@@ -4,8 +4,8 @@ from pydantic import Field
 from model_utilisateur import Utilisateur, UtilisateurListeBase
 
 class Poste(Enum):
-    CDP = 1 # Chef de projet
-    RESP_P = 2 # Responsable pédagogique
+    CDP = 'CDP' # Chef de projet
+    RESP_P = 'RESP_P' # Responsable pédagogique
 
 class Support(Utilisateur):
     poste: Poste = Field(...)
