@@ -2,7 +2,6 @@ from datetime import datetime
 from pydantic import BaseModel, Field, EmailStr
 
 class SchemaUtilisateur(BaseModel):
-    id: int = Field(...)
     nom: str = Field(..., max_length=50)
     prenom: str = Field(..., max_length=50)
     email: EmailStr
@@ -12,7 +11,6 @@ class SchemaUtilisateur(BaseModel):
     mdp: str = Field(..., max_length=100)
 
 class SchemaUtilisateurListeBase(BaseModel):
-    id: int = Field(...)
     nom: str = Field(..., max_length=50)
     prenom: str = Field(..., max_length=50)
     email: EmailStr

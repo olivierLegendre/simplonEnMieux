@@ -8,9 +8,11 @@ class Poste(Enum):
     RESP_P = 'RESP_P' # Responsable pédagogique
 
 class SchemaSupport(SchemaUtilisateur):
+    id_apprenant: int = Field(...)
     poste: Poste = Field(...)
     date_prise_fonction: date = Field(...)
     responsabilites: dict | None
 
 class SchemaSupportListeBase(SchemaUtilisateurListeBase):
+    id_apprenant: int = Field(...)
     poste: Poste = Field(...)

@@ -8,8 +8,10 @@ class NiveauAcces(Enum):
     SUPER_ADMIN = 'SUP'
 
 class SchemaAdmin(SchemaUtilisateur):
+    id_admin: int = Field(...)
     niveau_acces: NiveauAcces = Field(...)
     date_promotion: datetime = Field(...)
 
 class SchemaAdminListeBase(SchemaUtilisateurListeBase):
+    id_admin: int = Field(...)
     niveau_acces: NiveauAcces = Field(...)

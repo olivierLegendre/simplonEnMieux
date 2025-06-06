@@ -14,10 +14,12 @@ class NiveauEtude(Enum):
     SUPERIEUR = 'SUP'
 
 class SchemaApprenant(SchemaUtilisateur):
+    id_apprenant: int = Field(...)
     date_naissance: date = Field(...)
     date_inscription: date = Field(...)
     niveau_etude: NiveauEtude = Field(...)
     commentaire: str | None
 
 class SchemaApprenantListeBase(SchemaUtilisateurListeBase):
+    id_apprenant: int = Field(...)
     date_inscription: date = Field(...)
