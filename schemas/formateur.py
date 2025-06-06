@@ -1,6 +1,6 @@
 from datetime import date
 from pydantic import Field
-from schemas.schema_utilisateur import SchemaUtilisateur, SchemaUtilisateurListeBase
+from schemas.utilisateur import SchemaUtilisateur, SchemaUtilisateurListeBase
 
 class SchemaFormateur(SchemaUtilisateur):
     specialites: str
