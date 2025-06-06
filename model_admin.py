@@ -4,8 +4,8 @@ from pydantic import Field
 from model_utilisateur import Utilisateur, UtilisateurListeBase
 
 class NiveauAcces(Enum):
-    ADMIN_STANDART = 1
-    SUPER_ADMIN = 2
+    ADMIN_STANDART = 'STD'
+    SUPER_ADMIN = 'SUP'
 
 class Admin(Utilisateur):
     niveau_acces: NiveauAcces = Field(...)
