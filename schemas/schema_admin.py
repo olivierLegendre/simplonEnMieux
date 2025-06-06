@@ -1,7 +1,7 @@
 from enum import Enum
 from datetime import datetime
 from pydantic import Field
-from model_utilisateur import Utilisateur, UtilisateurListeBase
+from schemas.schema_utilisateur import Utilisateur, UtilisateurListeBase
 
 class NiveauAcces(Enum):
     ADMIN_STANDART = 'STD'
