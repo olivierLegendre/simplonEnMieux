@@ -1,6 +1,6 @@
 from datetime import date
 from pydantic import Field
-from schemas.utilisateur import SchemaUtilisateur, SchemaUtilisateurListeBase
+from schemas.utilisateur import SchemaUtilisateur
 
 class SchemaFormateur(SchemaUtilisateur):
     id_apprennant: int = Field(...)
@@ -8,6 +8,3 @@ class SchemaFormateur(SchemaUtilisateur):
     date_embauche: date = Field(...)
     taux_horaire: float
     bio: str | None
-
-class SchemaFormateurListeBase(SchemaUtilisateurListeBase):
-    id_apprenant: int = Field(...)

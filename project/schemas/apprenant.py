@@ -1,7 +1,7 @@
 from enum import Enum
 from datetime import date
 from pydantic import Field
-from schemas.utilisateur import SchemaUtilisateur, SchemaUtilisateurListeBase
+from schemas.utilisateur import SchemaUtilisateur
 
 class NiveauEtude(Enum):
     INFERIEUR_BAC = 'INF'
@@ -19,7 +19,3 @@ class SchemaApprenant(SchemaUtilisateur):
     date_inscription: date = Field(...)
     niveau_etude: NiveauEtude = Field(...)
     commentaire: str | None
-
-class SchemaApprenantListeBase(SchemaUtilisateurListeBase):
-    id_apprenant: int = Field(...)
-    date_inscription: date = Field(...)

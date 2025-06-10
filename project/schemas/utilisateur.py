@@ -9,8 +9,3 @@ class SchemaUtilisateur(BaseModel):
     telephone: str | None = Field(None, max_length=17)
     login: str = Field(..., max_length=10)
     mdp: str = Field(..., max_length=100)
-
-class SchemaUtilisateurListeBase(BaseModel):
-    nom: str = Field(..., max_length=50)
-    prenom: str = Field(..., max_length=50)
-    email: EmailStr
