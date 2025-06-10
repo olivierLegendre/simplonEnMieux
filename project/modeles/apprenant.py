@@ -1,0 +1,16 @@
+from sqlalchemy import Column, Integer, Enum, Date, Text
+#from sqlalchemy.ext.declarative import declarative_base
+from .utilisateur import ModeleUtilisateur#, ModeleUtilisateurListeBase
+from ..schemas.apprenant import SchemaApprenant
+#Base = declarative_base()
+
+class ModeleApprenant(ModeleUtilisateur):
+    __tablename__ = 'apprenant'
+    id_apprenant = Column(Integer, primary_key=True)
+    date_naissance = Column(Date)
+    date_inscription = Column(Date)
+    niveau_etude = Column(Enum)
+    commentaire = Column(Text)
+    
+    def get_id(self):
+        return self.id_apprenant
