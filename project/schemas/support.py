@@ -1,7 +1,7 @@
 from enum import Enum
 from datetime import date
 from pydantic import Field
-from schemas.utilisateur import SchemaUtilisateur
+from .utilisateur import SchemaUtilisateur, SchemaUtilisateurCreation
 
 class Poste(Enum):
     CDP = 'CDP' # Chef de projet
@@ -12,3 +12,6 @@ class SchemaSupport(SchemaUtilisateur):
     poste: Poste = Field(...)
     date_prise_fonction: date = Field(...)
     responsabilites: dict | None
+
+class SchemaSupportCreation(SchemaUtilisateurCreation):
+    pass

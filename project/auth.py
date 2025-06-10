@@ -3,7 +3,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, login_required, logout_user
 # from .models import User
 # from .modeles.utilisateur import ModeleUtilisateur
-from .modeles.apprenant import ModeleApprenant
+from .modeles.apprenant import creation_Apprenant, ModeleApprenant
 from .modeles.admin import ModeleAdmin
 from . import db
 
@@ -61,10 +61,7 @@ def signup_post():
     
     #create a new user
     #hash the password
-    new_user = ModeleApprenant(email=email, nom=nom, prenom=prenom, login=login, mdp=generate_password_hash(mdp))
-    
-    #persist the user
-    db.session.add(new_user)
+    creation_Apprenant(email=email, nom=nom, prenom=prenom, login=login, mdp=generate_password_hash(mdp))
     db.session.commit()
     
     return redirect(url_for('auth.login'))

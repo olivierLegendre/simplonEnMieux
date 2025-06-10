@@ -1,7 +1,8 @@
 from sqlalchemy import Column, Integer, Enum, Date, Text
 #from sqlalchemy.ext.declarative import declarative_base
 from .utilisateur import ModeleUtilisateur#, ModeleUtilisateurListeBase
-from ..schemas.apprenant import SchemaApprenant
+from ..schemas.apprenant import SchemaApprenant, SchemaApprenantCreation
+from .. import db
 #Base = declarative_base()
 
 class ModeleApprenant(ModeleUtilisateur):
@@ -14,3 +15,15 @@ class ModeleApprenant(ModeleUtilisateur):
     
     def get_id(self):
         return self.id_apprenant
+    
+def creation_Apprenant(**kwargs):
+    schema = SchemaApprenantCreation(**kwargs)
+    modele = ModeleApprenant(**schema.model_dump())
+    db.session.add(modele)
+    return modele
+
+def maj_Apprenant(**kwargs):
+    schema = SchemaApprenant(**kwargs)
+    modele = ModeleApprenant(**schema.model_dump())
+    db.session.add(modele)
+    return modele
