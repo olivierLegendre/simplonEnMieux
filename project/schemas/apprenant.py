@@ -2,6 +2,7 @@ from enum import Enum
 from datetime import date
 from pydantic import Field
 from .utilisateur import SchemaUtilisateur, SchemaUtilisateurCreation, SchemaUtilisateurMaj
+from sqlalchemy import inspect
 
 class NiveauEtude(Enum):
     INFERIEUR_BAC = 'INF'
