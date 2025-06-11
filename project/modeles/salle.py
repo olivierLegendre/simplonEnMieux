@@ -1,6 +1,6 @@
 from sqlalchemy import Column, String, SmallInteger, Boolean
 from .. import db
-from ..schemas.salle import SchemaSalle, SchemaSalleCreation
+from ..schemas.salle import SchemaSalle #, SchemaSalleCreation
 
 class ModeleSalle(db.Model):
     __tablename__ = 'salle'

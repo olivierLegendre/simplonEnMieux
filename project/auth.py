@@ -24,9 +24,6 @@ def login_post():
     mdp = form.get("mdp")
     
     user = ModeleApprenant.query.filter_by(login=login).first()
-    session["user"] = user.to_dict()
-    session["user_type"] = "appprenant"
-    print(f"user {user.to_dict()}")
     if not user:
         flash("Verifier vos login / mot de passe")
         return redirect(url_for('auth.login'))
@@ -34,6 +31,9 @@ def login_post():
         flash("Mauvais mot de passe , Oui j'ai honte")
         return redirect(url_for('auth.login'))
 
+    session["user"] = user.to_dict()
+    session["user_type"] = "appprenant"
+    print(f"user {user.to_dict()}")
     login_user(user, remember="remember")
     return redirect(url_for('main.profile'))
 
