@@ -8,6 +8,7 @@ from ..schemas.admin import SchemaAdmin, SchemaAdminCreation
 
 class ModeleAdmin(ModeleUtilisateur):
     __tablename__ = 'admin'
+    # __table_args__ = {'extend_existing': True}
     id_admin = Column(Integer, primary_key=True)
     niveau_acces = Column(Enum)
     date_promotion = Column(Date)

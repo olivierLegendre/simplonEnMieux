@@ -7,7 +7,7 @@ from ..schemas.support import SchemaSupport, SchemaSupportCreation
 #Base = declarative_base()
 
 class ModeleSupport(ModeleUtilisateur):
-    __tablename__ = 'admin'
+    __tablename__ = 'support'
     id_support = Column(Integer, primary_key=True)
     poste = Column(Enum)
     date_prise_fonction = Column(Date)
