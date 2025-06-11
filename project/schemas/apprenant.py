@@ -12,6 +12,18 @@ class NiveauEtude(Enum):
     BAC_4 = 'BAC_4'
     BAC_5 = 'BAC_5'
     SUPERIEUR = 'SUP'
+    
+    def get_select():
+        return {
+            "INFERIEUR_BAC": 'INF',
+            "BAC": 'BAC',
+            "BAC_1": 'BAC_1',
+            "BAC_2": 'BAC_2',
+            "BAC_3": 'BAC_3',
+            "BAC_4": 'BAC_4',
+            "BAC_5": 'BAC_5',
+            "SUPERIEUR": 'SUP',
+        }
 
 class SchemaApprenant(SchemaUtilisateur):
     id_apprenant: int = Field(...)

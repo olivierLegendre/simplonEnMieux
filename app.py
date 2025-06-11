@@ -1,8 +1,9 @@
 from project import db, create_app
-from project.modeles.apprenant import ModeleApprenant
+from project.modeles.apprenant_certification import ModeleApprenant, ModeleCertification
 from project.modeles.admin import ModeleAdmin
 from project.modeles.formateur import ModeleFormateur
 from project.modeles.support import ModeleSupport
+from project.modeles.salle import ModeleSalle
 
 def main():
     #pass the create_app result so Flask-SQLAlchemy gets the configuration.
