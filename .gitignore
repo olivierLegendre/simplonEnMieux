@@ -234,3 +234,4 @@ Temporary Items
 ##database
 project/db/database
 .vscode
+.vscode/*
