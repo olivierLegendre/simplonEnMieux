@@ -22,7 +22,8 @@ def create_app():
     login_manager.login_view = 'auth.login'
     login_manager.init_app(app)
     
-    from .modeles.apprenant import ModeleApprenant
+    #from .modeles.apprenant import ModeleApprenant
+    from .modeles.apprenant_certification import ModeleApprenant
     @login_manager.user_loader
     def load_user(id_apprenant):
         # repr(ModeleApprenant)

@@ -1,9 +1,7 @@
 from sqlalchemy import Column, Integer, String, Date, Float, Text
-#from sqlalchemy.ext.declarative import declarative_base
 from .utilisateur import ModeleUtilisateur#, ModeleUtilisateurListeBase
 from .. import db
 from ..schemas.formateur import SchemaFormateur, SchemaFormateurCreation
-#Base = declarative_base()
 
 class ModeleFormateur(ModeleUtilisateur):
     __tablename__ = 'formateur'
@@ -14,13 +12,16 @@ class ModeleFormateur(ModeleUtilisateur):
     taux_horaire = Column(Float)
     bio = Column(Text)
 
-def creation_Formateur(**kwargs):
+    def get_id(self):
+        return self.id_formateur
+
+def creation_formateur(**kwargs):
     schema = SchemaFormateurCreation(**kwargs)
     modele = ModeleFormateur(**schema.model_dump())
     db.session.add(modele)
     return modele
 
-def maj_Formateur(**kwargs):
+def maj_formateur(**kwargs):
     schema = SchemaFormateur(**kwargs)
     modele = ModeleFormateur(**schema.model_dump())
     db.session.add(modele)

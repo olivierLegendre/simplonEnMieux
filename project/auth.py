@@ -3,8 +3,12 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, login_required, logout_user
 # from .models import User
 # from .modeles.utilisateur import ModeleUtilisateur
-from .modeles.apprenant import creation_Apprenant, ModeleApprenant
+
+# from .modeles.apprenant import creation_apprenant, ModeleApprenant
+from .modeles.apprenant_certification import ModeleApprenant, creation_apprenant
+
 from .modeles.admin import ModeleAdmin
+
 from . import db
 
 auth = Blueprint('auth', __name__)
@@ -61,7 +65,7 @@ def signup_post():
     
     #create a new user
     #hash the password
-    creation_Apprenant(email=email, nom=nom, prenom=prenom, login=login, mdp=generate_password_hash(mdp))
+    creation_apprenant(email=email, nom=nom, prenom=prenom, login=login, mdp=generate_password_hash(mdp))
     db.session.commit()
     
     return redirect(url_for('auth.login'))
