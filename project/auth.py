@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect, url_for, request, flash
+from flask import Blueprint, render_template, redirect, url_for, request, flash, session
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, login_required, logout_user
 # from .models import User
@@ -24,7 +24,9 @@ def login_post():
     mdp = form.get("mdp")
     
     user = ModeleApprenant.query.filter_by(login=login).first()
-    print(f"user {user}")
+    session["user"] = user.to_dict()
+    session["user_type"] = "appprenant"
+    print(f"user {user.to_dict()}")
     if not user:
         flash("Verifier vos login / mot de passe")
         return redirect(url_for('auth.login'))
@@ -65,7 +67,7 @@ def signup_post():
     
     #create a new user
     #hash the password
-    creation_apprenant(email=email, nom=nom, prenom=prenom, login=login, mdp=generate_password_hash(mdp))
+    apprenant = creation_apprenant(email=email, nom=nom, prenom=prenom, login=login, mdp=generate_password_hash(mdp))
     db.session.commit()
     
     return redirect(url_for('auth.login'))

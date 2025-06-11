@@ -2,6 +2,66 @@
 
 {% block content %}
 <h1 class="title">
-    Welcome, {{ prenom }}!
+    Welcome, {{ user.prenom }}!
 </h1>
+<div class="box">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="notification is-danger">
+            {{ messages[0] }}. Go to <a href="{{ url_for('auth.update') }}">login page</a>.
+        </div>
+    {% endif %}
+    {% endwith %}
+    <form method="POST" action="/update">
+        <div class="field">
+            <div class="control">
+                <input class="input is-large" type="text" name="nom" placeholder="Nom" autofocus="">
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="control">
+                <input class="input is-large" type="text" name="prenom" placeholder="Prenom" autofocus="">
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="control">
+                <input class="input is-large" type="email" name="email" placeholder="Email" autofocus="">
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="control">
+                <input class="input is-large" type="text" name="login" placeholder="Login" autofocus="">
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="control">
+                <input class="input is-large" type="password" name="mdp" placeholder="Mot de passe">
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="control">
+                <input class="input is-large" type="date" name="date_naissance" placeholder="Date de naissance">
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="control">
+                <input class="input is-large" type="date" name="niveau_etude" placeholder="Niveau d'etude">
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="control">
+                <input class="input is-large" type="date" name="commentaire" placeholder="Commentaire">
+            </div>
+        </div>
+
+        <button class="button is-block is-info is-large is-fullwidth">Sign Up</button>
+    </form>
+</div>
 {% endblock %}

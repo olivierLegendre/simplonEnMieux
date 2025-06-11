@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, session
 from flask_login import login_required, current_user
 from . import db
 
@@ -11,4 +11,5 @@ def index():
 @main.route('/profile')
 @login_required
 def profile():
-    return render_template('profile.html', prenom=current_user.prenom)
+    user = session["user"]
+    return render_template('profile.html', user=user)
