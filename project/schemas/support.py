@@ -14,4 +14,4 @@ class SchemaSupport(SchemaUtilisateur):
     responsabilites: dict | None
 
 class SchemaSupportCreation(SchemaUtilisateurCreation):
-    pass
+    poste: Poste = Field(...)
