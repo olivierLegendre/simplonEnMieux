@@ -17,7 +17,7 @@ class SchemaApprenant(SchemaUtilisateur):
     id_apprenant: int = Field(...)
     date_naissance: date = Field(...)
     date_inscription: date = Field(...)
-    niveau_etude: NiveauEtude = Field(...)
+    niveau_etude: NiveauEtude | None
     commentaire: str | None
 
 class SchemaApprenantCreation(SchemaUtilisateurCreation):

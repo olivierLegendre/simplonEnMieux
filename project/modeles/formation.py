@@ -1,6 +1,6 @@
 from sqlalchemy import Column, String, SmallInteger
 from .. import db
-from ..schemas.formation import SchemaFormation, SchemaFormationCreation
+from ..schemas.formation import SchemaFormation
 
 class ModeleFormation(db.Model):
     __tablename__ = 'formation'
@@ -11,7 +11,7 @@ class ModeleFormation(db.Model):
         return self.id_formation
 
 def creation_formation(**kwargs):
-    schema = SchemaFormationCreation(**kwargs)
+    schema = SchemaFormation(**kwargs)
     modele = ModeleFormation(**schema.model_dump())
     db.session.add(modele)
     return modele
