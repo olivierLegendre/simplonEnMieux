@@ -1,12 +1,12 @@
 from sqlalchemy import Column, Integer, Enum, Date, JSON
 from .utilisateur import ModeleUtilisateur#, ModeleUtilisateurListeBase
 from .. import db
-from ..schemas.support import SchemaSupport, SchemaSupportCreation
+from ..schemas.support import SchemaSupport, SchemaSupportCreation, Poste
 
 class ModeleSupport(ModeleUtilisateur):
     __tablename__ = 'support'
     id_support = Column(Integer, primary_key=True)
-    poste = Column(Enum)
+    poste = Column(Enum(Poste))
     date_prise_fonction = Column(Date)
     responsabilites = Column(JSON)
 
