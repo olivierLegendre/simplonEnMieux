@@ -5,6 +5,7 @@ from ..schemas.formateur import SchemaFormateur, SchemaFormateurCreation
 
 class ModeleFormateur(ModeleUtilisateur):
     __tablename__ = 'formateur'
+    # __table_args__ = {'extend_existing': True}
     id_formateur = Column(Integer, primary_key=True)
     specialites = Column(String)
     date_embauche = Column(Date)
