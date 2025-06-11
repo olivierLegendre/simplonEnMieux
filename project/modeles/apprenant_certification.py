@@ -3,7 +3,7 @@ from sqlalchemy.orm import relationship
 from .. import db
 
 from .utilisateur import ModeleUtilisateur
-from ..schemas.apprenant import SchemaApprenant, SchemaApprenantCreation
+from ..schemas.apprenant import SchemaApprenant, SchemaApprenantCreation, NiveauEtude
 from ..schemas.certification import SchemaCertification
 
 apprenant_certification = Table(
@@ -18,7 +18,7 @@ class ModeleApprenant(ModeleUtilisateur):
     id_apprenant = Column(Integer, primary_key=True)
     date_naissance = Column(Date)
     date_inscription = Column(Date)
-    niveau_etude = Column(Enum)
+    niveau_etude = Column(NiveauEtude)
     commentaire = Column(Text)
     certifications = relationship(
         "ModeleCertification",
