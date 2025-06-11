@@ -7,6 +7,7 @@ from .. import db
 
 class ModeleApprenant(ModeleUtilisateur):
     __tablename__ = 'apprenant'
+    # __table_args__ = {'extend_existing': True}
     id_apprenant = Column(Integer, primary_key=True)
     date_naissance = Column(Date)
     date_inscription = Column(Date)
