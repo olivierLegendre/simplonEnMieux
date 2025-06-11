@@ -6,7 +6,7 @@ from ..schemas.support import SchemaSupport, SchemaSupportCreation, Poste
 class ModeleSupport(ModeleUtilisateur):
     __tablename__ = 'support'
     id_support = Column(Integer, primary_key=True)
-    poste = Column(Poste)
+    poste = Column(Enum(Poste))
     date_prise_fonction = Column(Date)
     responsabilites = Column(JSON)
 
