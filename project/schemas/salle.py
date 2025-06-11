@@ -6,3 +6,7 @@ class SchemaSalle(BaseModel):
     capacite: int = Field(...)
     localisation: str
     actif: bool = Field(True)
+
+class SchemaSalleCreation(BaseModel):
+    id_salle: int = Field(...)
+    nom: str = Field(...)

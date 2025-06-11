@@ -53,11 +53,11 @@ def creation_certification(**kwargs):
     db.session.add(modele)
     return modele
 
-# def maj_certification(**kwargs):
-#     schema = SchemaCertification(**kwargs)
-#     modele = ModeleCertification(**schema.model_dump())
-#     db.session.add(modele)
-#     return modele
+def maj_certification(**kwargs):
+    schema = SchemaCertification(**kwargs)
+    modele = ModeleCertification(**schema.model_dump())
+    db.session.add(modele)
+    return modele
 
 def maj_apprenant(**kwargs):
     schema = SchemaApprenant(**kwargs)
