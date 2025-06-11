@@ -1,10 +1,7 @@
 from sqlalchemy import Column, Integer, Enum, Date, JSON
-#from sqlalchemy.ext.declarative import declarative_base
 from .utilisateur import ModeleUtilisateur#, ModeleUtilisateurListeBase
 from .. import db
 from ..schemas.support import SchemaSupport, SchemaSupportCreation
-
-#Base = declarative_base()
 
 class ModeleSupport(ModeleUtilisateur):
     __tablename__ = 'admin'
@@ -13,13 +10,16 @@ class ModeleSupport(ModeleUtilisateur):
     date_prise_fonction = Column(Date)
     responsabilites = Column(JSON)
 
-def creation_Support(**kwargs):
+    def get_id(self):
+        return self.id_support
+
+def creation_support(**kwargs):
     schema = SchemaSupportCreation(**kwargs)
     modele = ModeleSupport(**schema.model_dump())
     db.session.add(modele)
     return modele
 
-def maj_Support(**kwargs):
+def maj_support(**kwargs):
     schema = SchemaSupport(**kwargs)
     modele = ModeleSupport(**schema.model_dump())
     db.session.add(modele)
