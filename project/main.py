@@ -25,6 +25,11 @@ def index():
 @main.route("/profile")
 @login_required
 def profile() -> Response:
+    """
+    affiche le profil utilsateur
+    Returns:
+        Response: page profile
+    """
     user = session["user"]
     select_niveau_etude = NiveauEtude.get_select()
     data = {"user": user, "select_niveau_etude": select_niveau_etude}
@@ -34,6 +39,13 @@ def profile() -> Response:
 @main.route("/profile", methods=["POST"])
 @login_required
 def profile_post() -> Response:
+    """
+    gere le post sur le profil
+    offre la possiblité de l'editer et de le supprimer
+    Returns:
+        Response: page profile
+    """
+    
     form = request.form
     id_apprenant = form.get("id_apprenant")
 
@@ -63,6 +75,12 @@ def profile_post() -> Response:
 @main.route("/delete", methods=["POST"])
 @login_required
 def profile_delete() -> Response:
+    """
+    Suppression de l'utilsateur actuel
+
+    Returns:
+        Response: page login
+    """
     form = request.form
     id_apprenant = form.get("id_apprenant")
 

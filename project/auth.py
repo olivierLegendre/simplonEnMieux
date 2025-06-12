@@ -20,11 +20,24 @@ auth = Blueprint("auth", __name__)
 
 @auth.route("/login")
 def login() -> Response:
+    """
+    affiche la form login
+    Returns:
+        Response: url de la page login
+    """
     return render_template("login.html")
 
 
 @auth.route("/login", methods=["POST"])
 def login_post() -> Response:
+    """
+    Gere le post du login
+    Redirige vers le login si l'utilisateur n'existe pas 
+    ou si le mdp n'est pas bon
+    Redirige vers la page de profil si l'utilsateur existe
+    Returns:
+        Response: url de page login ou profil
+    """
     form = request.form
     login = form.get("login")
     mdp = form.get("mdp")
@@ -45,11 +58,22 @@ def login_post() -> Response:
 
 @auth.route("/signup")
 def signup() -> Response:
+    """
+    affiche la form de creation du compte
+    Returns:
+        Response: page signup
+    """
     return render_template("signup.html")
 
 
 @auth.route("/signup", methods=["POST"])
 def signup_post() -> Response:
+    """
+    gere le post de la creation de compte
+    creer un nouvel apprenant
+    Returns:
+        Response: page signup
+    """
     # get the data from the form
     form = request.form
     nom = form.get("nom")
@@ -89,5 +113,11 @@ def signup_post() -> Response:
 @auth.route("/logout")
 @login_required
 def logout() -> Response:
+    """
+    gestion logout
+    on vide la session
+    Returns:
+        Response: page index
+    """
     logout_user()
     return redirect(url_for("main.index"))

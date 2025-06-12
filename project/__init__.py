@@ -9,6 +9,14 @@ db = SQLAlchemy()
 
 
 def create_app() -> Flask:
+    """
+    Initialise l'application flask
+    Configure la base de donnée et le "secret"
+    Initialise le login_manager et flask_migrate
+    Met en place deux blueprints main et auth
+    Returns:
+        Flask: _description_
+    """
     app = Flask(__name__)
     basedir = os.path.abspath(os.path.dirname(__file__))
     app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + os.path.join(
