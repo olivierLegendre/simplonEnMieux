@@ -23,15 +23,15 @@
 
         <div class="field">
             <div class="control">
-                <label>Nom :</label>
-                <input class="input is-large" type="text" name="nom" placeholder="Nom" autofocus="" value={{user.nom}} >
+                <label>Prenom :</label>
+                <input class="input is-large" type="text" name="prenom" placeholder="Prenom" autofocus="" value={{user.prenom}} >
             </div>
         </div>
 
         <div class="field">
             <div class="control">
-                <label>Prenom :</label>
-                <input class="input is-large" type="text" name="prenom" placeholder="Prenom" autofocus="" value={{user.prenom}} >
+                <label>Nom :</label>
+                <input class="input is-large" type="text" name="nom" placeholder="Nom" autofocus="" value={{user.nom}} >
             </div>
         </div>
 
@@ -62,7 +62,7 @@
                 <!-- <input class="input is-large" type="select" name="niveau_etude" placeholder="Niveau d'etude" value={{user.niveau_etude}} > -->
                 <select class="input is-large" name="niveau_etude" id="niveau_etude" placeholder="Niveau d'etude">
                 {% for key, value in select_niveau_etude.items() -%}
-                    <option value={{key}}>{{value}}</option>
+                    <option value={{value}}>{{value}}</option>
                 {% endfor %}
                 </select>
             </div>
@@ -76,6 +76,16 @@
         </div>
 
         <button class="button is-block is-info is-large is-fullwidth">Editez votre profil</button>
+    </form>
+</div>
+<div>
+    <form method="POST" action="/delete">
+        <div class="field">
+            <div class="control">
+                <input class="input is-large color:red" type="hidden" name="id_apprenant" placeholder="id" autofocus="" value={{user.id_apprenant}} required>
+            </div>
+        </div>
+        <button class="button is-block is-info is-large is-fullwidth">Supprimer votre profil</button>
     </form>
 </div>
 {% endblock %}

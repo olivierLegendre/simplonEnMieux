@@ -14,6 +14,7 @@ class SchemaUtilisateurCreation(BaseModel):
     nom: str = Field(..., max_length=50)
     prenom: str = Field(..., max_length=50)
     email: EmailStr
+    date_creation: datetime = Field(...)
     login: str = Field(..., max_length=10)
     mdp: str = Field(..., max_length=256)
 
