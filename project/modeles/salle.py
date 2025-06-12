@@ -1,6 +1,6 @@
 from sqlalchemy import Column, String, SmallInteger, Boolean
 from .. import db
-from ..schemas.salle import SchemaSalle, SchemaSalleCreation
+from ..schemas.salle import SchemaSalle #, SchemaSalleCreation
 
 class ModeleSalle(db.Model):
     __tablename__ = 'salle'
@@ -14,7 +14,7 @@ class ModeleSalle(db.Model):
         return self.id_salle
 
 def creation_salle(**kwargs):
-    schema = SchemaSalleCreation(**kwargs)
+    schema = SchemaSalle(**kwargs)
     modele = ModeleSalle(**schema.model_dump())
     db.session.add(modele)
     return modele
