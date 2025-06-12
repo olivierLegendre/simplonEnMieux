@@ -31,7 +31,7 @@ class ModeleUtilisateur(UserMixin, db.Model):
         return map_serialisable
 
     def get_enum_values(enum) -> str:
-        print(f" enum class {enum}")
-        print(f" to return {enum.name}")
-        pass
-        # return enum.name
+        # print(f" enum class {enum}")
+        # print(f" to return {enum.name}")
+        # pass
+        return enum.name
