@@ -16,3 +16,8 @@ class SchemaUtilisateurCreation(BaseModel):
     email: EmailStr
     login: str = Field(..., max_length=10)
     mdp: str = Field(..., max_length=256)
+
+class SchemaUtilisateurMaj(BaseModel):
+    nom: str = Field(..., max_length=50)
+    prenom: str = Field(..., max_length=50)
+    telephone: str | None = Field(None, max_length=17)

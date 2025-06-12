@@ -1,8 +1,7 @@
 from enum import Enum
 from datetime import date
 from pydantic import Field
-from .utilisateur import SchemaUtilisateur, SchemaUtilisateurCreation
-from sqlalchemy import inspect
+from .utilisateur import SchemaUtilisateur, SchemaUtilisateurCreation, SchemaUtilisateurMaj
 
 class NiveauEtude(Enum):
     INFERIEUR_BAC = 'INF'
@@ -35,3 +34,8 @@ class SchemaApprenant(SchemaUtilisateur):
 
 class SchemaApprenantCreation(SchemaUtilisateurCreation):
     pass
+
+class SchemaApprenantMaj(SchemaUtilisateurMaj):
+    date_naissance: date = Field(...)
+    niveau_etude: NiveauEtude | None
+    commentaire: str | None

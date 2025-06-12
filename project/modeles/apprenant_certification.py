@@ -3,7 +3,7 @@ from sqlalchemy.orm import relationship
 from .. import db
 
 from .utilisateur import ModeleUtilisateur
-from ..schemas.apprenant import SchemaApprenant, SchemaApprenantCreation, NiveauEtude
+from ..schemas.apprenant import SchemaApprenant, SchemaApprenantCreation, SchemaApprenantMaj, NiveauEtude
 from ..schemas.certification import SchemaCertification
 
 apprenant_certification = Table(
@@ -34,6 +34,12 @@ def creation_apprenant(**kwargs):
     db.session.add(modele)
     return modele
 
+def maj_apprenant(modele_existant: ModeleApprenant, **kwargs):
+    schema = SchemaApprenantMaj(**kwargs)
+    for champ, valeur in schema.__dict__.items():
+        setattr(modele_existant, champ, valeur)
+    return (schema is not None)
+
 class ModeleCertification(db.Model):
     __tablename__ = 'certification'
     id_certification = Column(SmallInteger, primary_key=True)
@@ -53,14 +59,8 @@ def creation_certification(**kwargs):
     db.session.add(modele)
     return modele
 
-def maj_certification(**kwargs):
+def maj_certification(modele_existant: ModeleCertification, **kwargs):
     schema = SchemaCertification(**kwargs)
-    modele = ModeleCertification(**schema.model_dump())
-    db.session.add(modele)
-    return modele
-
-def maj_apprenant(**kwargs):
-    schema = SchemaApprenant(**kwargs)
-    modele = ModeleApprenant(**schema.model_dump())
-    db.session.add(modele)
-    return modele
+    for champ, valeur in schema.__dict__.items():
+        setattr(modele_existant, champ, valeur)
+    return (schema is not None)
