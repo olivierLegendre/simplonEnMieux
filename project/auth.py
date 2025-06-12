@@ -6,6 +6,7 @@ from flask_login import login_user, login_required, logout_user
 
 # from .modeles.apprenant import creation_apprenant, ModeleApprenant
 from .modeles.apprenant_certification import ModeleApprenant, creation_apprenant
+from datetime import datetime, date
 
 from .modeles.admin import ModeleAdmin
 
@@ -50,6 +51,7 @@ def signup_post():
     email = form.get("email")
     login = form.get("login")
     mdp = form.get("mdp")
+    date_creation = str(date.today())
     
     # if this returns a user, then the email already exists in database
     user_by_email = ModeleApprenant.query.filter_by(email=email).first()
@@ -67,7 +69,8 @@ def signup_post():
     
     #create a new user
     #hash the password
-    apprenant = creation_apprenant(email=email, nom=nom, prenom=prenom, login=login, mdp=generate_password_hash(mdp))
+    apprenant = creation_apprenant(email=email, nom=nom, prenom=prenom, date_creation=date_creation , login=login, mdp=generate_password_hash(mdp))
+    print(f"apprenant dans signup {apprenant}")
     db.session.commit()
     
     return redirect(url_for('auth.login'))

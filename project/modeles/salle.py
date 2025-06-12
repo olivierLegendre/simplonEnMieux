@@ -14,7 +14,7 @@ class ModeleSalle(db.Model):
         return self.id_salle
 
 def creation_salle(**kwargs):
-    schema = SchemaSalleCreation(**kwargs)
+    schema = SchemaSalle(**kwargs)
     modele = ModeleSalle(**schema.model_dump())
     db.session.add(modele)
     return modele
