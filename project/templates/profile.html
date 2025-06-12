@@ -2,6 +2,90 @@
 
 {% block content %}
 <h1 class="title">
-    Welcome, {{ prenom }}!
+    Votre profil 
 </h1>
+<div class="box">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="notification is-succes">
+            {{ messages[0] }}
+        </div>
+    {% endif %}
+    {% endwith %}
+    {% set user = data["user"] %}
+    {% set select_niveau_etude = data["select_niveau_etude"] %}
+    <form method="POST" action="/profile">
+        <div class="field">
+            <div class="control">
+                <input class="input is-large" type="hidden" name="id_apprenant" placeholder="id" autofocus="" value={{user.id_apprenant}} required>
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="control">
+                <label>Prenom :</label>
+                <input class="input is-large" type="text" name="prenom" placeholder="Prenom" autofocus="" value={{user.prenom}} >
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="control">
+                <label>Nom :</label>
+                <input class="input is-large" type="text" name="nom" placeholder="Nom" autofocus="" value={{user.nom}} >
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="control">
+                <label>Email :</label>
+                <input class="input is-large" type="email" name="email" placeholder="Email" autofocus="" value={{user.email}} required>
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="control">
+                <label>Login (non modifiable) :</label>
+                <input class="input is-large" type="text" name="login" placeholder="Login" autofocus="" value={{user.login}} readonly>
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="control">
+                <label>Date de Naissance :</label>
+                <input class="input is-large" type="date" name="date_naissance" placeholder="Date de naissance" value={{user.date_naissance}} >
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="control">
+                <label>Niveau d'étude :</label>
+                <!-- <input class="input is-large" type="select" name="niveau_etude" placeholder="Niveau d'etude" value={{user.niveau_etude}} > -->
+                <select class="input is-large" name="niveau_etude" id="niveau_etude" placeholder="Niveau d'etude">
+                {% for key, value in select_niveau_etude.items() -%}
+                    <option value={{value}}>{{value}}</option>
+                {% endfor %}
+                </select>
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="control">
+                <label>Commentaire :</label>
+                <textarea class="input is-large" id="commentaire" name="commentaire" >{{user.commentaire}}</textarea>
+            </div>
+        </div>
+
+        <button class="button is-block is-info is-large is-fullwidth">Editez votre profil</button>
+    </form>
+</div>
+<div>
+    <form method="POST" action="/delete">
+        <div class="field">
+            <div class="control">
+                <input class="input is-large color:red" type="hidden" name="id_apprenant" placeholder="id" autofocus="" value={{user.id_apprenant}} required>
+            </div>
+        </div>
+        <button class="button is-block is-info is-large is-fullwidth">Supprimer votre profil</button>
+    </form>
+</div>
 {% endblock %}

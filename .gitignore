@@ -232,5 +232,6 @@ Temporary Items
 # End of https://www.toptal.com/developers/gitignore/api/macos
 
 ##database
-project/db/database
+project/db/database.db
 .vscode
+.vscode/*

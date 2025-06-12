@@ -18,7 +18,7 @@ class ModeleApprenant(ModeleUtilisateur):
     id_apprenant = Column(Integer, primary_key=True)
     date_naissance = Column(Date)
     date_inscription = Column(Date)
-    niveau_etude = Column(NiveauEtude)
+    niveau_etude = Column(Enum(NiveauEtude), nullable=True)
     commentaire = Column(Text)
     certifications = relationship(
         "ModeleCertification",

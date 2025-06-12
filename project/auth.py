@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect, url_for, request, flash
+from flask import Blueprint, render_template, redirect, url_for, request, flash, session
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, login_required, logout_user
 # from .models import User
@@ -6,6 +6,7 @@ from flask_login import login_user, login_required, logout_user
 
 # from .modeles.apprenant import creation_apprenant, ModeleApprenant
 from .modeles.apprenant_certification import ModeleApprenant, creation_apprenant
+from datetime import datetime, date
 
 from .modeles.admin import ModeleAdmin
 
@@ -24,7 +25,6 @@ def login_post():
     mdp = form.get("mdp")
     
     user = ModeleApprenant.query.filter_by(login=login).first()
-    print(f"user {user}")
     if not user:
         flash("Verifier vos login / mot de passe")
         return redirect(url_for('auth.login'))
@@ -32,6 +32,8 @@ def login_post():
         flash("Mauvais mot de passe , Oui j'ai honte")
         return redirect(url_for('auth.login'))
 
+    session["user"] = user.to_dict()
+    session["user_type"] = "appprenant"
     login_user(user, remember="remember")
     return redirect(url_for('main.profile'))
 
@@ -48,15 +50,14 @@ def signup_post():
     email = form.get("email")
     login = form.get("login")
     mdp = form.get("mdp")
+    date_creation = str(date.today())
     
     # if this returns a user, then the email already exists in database
     user_by_email = ModeleApprenant.query.filter_by(email=email).first()
     # if this returns a user, then the login already exists in database
     user_by_login = ModeleApprenant.query.filter_by(login=login).first()
-    print(f"{user_by_email} {user_by_login}")
     
     if user_by_login is not None:
-        print(f"je suis l'utilisateur {user_by_login}")
         flash('Login address already exists')
         return redirect(url_for('auth.signup'))
     if user_by_email is not None:
@@ -65,7 +66,7 @@ def signup_post():
     
     #create a new user
     #hash the password
-    creation_apprenant(email=email, nom=nom, prenom=prenom, login=login, mdp=generate_password_hash(mdp))
+    apprenant = creation_apprenant(email=email, nom=nom, prenom=prenom, date_creation=date_creation , login=login, mdp=generate_password_hash(mdp))
     db.session.commit()
     
     return redirect(url_for('auth.login'))
