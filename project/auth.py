@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect, url_for, request, flash, session
+from flask import Blueprint, render_template, redirect, url_for, request, flash, session, Response
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, login_required, logout_user
 # from .models import User
@@ -15,11 +15,11 @@ from . import db
 auth = Blueprint('auth', __name__)
 
 @auth.route('/login')
-def login():
+def login()-> Response:
     return render_template('login.html')
 
 @auth.route('/login', methods=["POST"])
-def login_post():
+def login_post() -> Response:
     form = request.form
     login = form.get("login")
     mdp = form.get("mdp")
@@ -38,11 +38,11 @@ def login_post():
     return redirect(url_for('main.profile'))
 
 @auth.route('/signup')
-def signup():
+def signup()-> Response:
     return render_template('signup.html')
 
 @auth.route('/signup', methods=['POST'])
-def signup_post():
+def signup_post()-> Response:
     # get the data from the form
     form = request.form
     nom = form.get("nom")
@@ -73,6 +73,6 @@ def signup_post():
 
 @auth.route('/logout')
 @login_required
-def logout():
+def logout()-> Response:
     logout_user()
     return redirect(url_for('main.index'))

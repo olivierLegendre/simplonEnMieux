@@ -13,7 +13,7 @@ class NiveauEtude(Enum):
     BAC_5 = 'BAC_5'
     SUPERIEUR = 'SUP'
     
-    def get_select():
+    def get_select() -> dict:
         return {
             "INFERIEUR_BAC": 'INF',
             "BAC": 'BAC',

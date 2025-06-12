@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, session, request, flash, redirect, url_for
+from flask import Blueprint, render_template, session, request, flash, redirect, url_for, Response
 from flask_login import login_required, current_user, logout_user
 from .modeles.apprenant_certification import ModeleApprenant, maj_apprenant
 from .schemas.apprenant import NiveauEtude
@@ -13,7 +13,7 @@ def index():
 
 @main.route('/profile')
 @login_required
-def profile():
+def profile()-> Response:
     user = session["user"]
     select_niveau_etude = NiveauEtude.get_select()
     data = {"user": user, "select_niveau_etude": select_niveau_etude}
@@ -21,7 +21,7 @@ def profile():
 
 @main.route('/profile', methods=["POST"])
 @login_required
-def profile_post():
+def profile_post()-> Response:
     form = request.form
     id_apprenant = form.get("id_apprenant")
     
@@ -47,7 +47,7 @@ def profile_post():
 
 @main.route('/delete', methods=["POST"])
 @login_required
-def profile_delete():
+def profile_delete()-> Response:
     form = request.form
     id_apprenant = form.get("id_apprenant")
     
