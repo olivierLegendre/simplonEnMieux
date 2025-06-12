@@ -54,7 +54,6 @@ simplonEnMieux/
 ├── app.py           # Point d’entrée de l’application
 ├── migrations/      # Dossier des migrations (auto-généré)
 ├── project/         # (à documenter : modèles, views, etc.)
-├── .vscode/         # (optionnel : config VSCode)
 ├── requirements.txt # Dépendances Python
 ├── .gitignore
 └── LICENSE
