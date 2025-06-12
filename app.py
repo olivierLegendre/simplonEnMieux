@@ -4,13 +4,8 @@ from project.modeles.admin import ModeleAdmin
 from project.modeles.formateur import ModeleFormateur
 from project.modeles.support import ModeleSupport
 from project.modeles.salle import ModeleSalle
+from project.modeles import *
 
-def main():
-    #pass the create_app result so Flask-SQLAlchemy gets the configuration.
-    # db.create_all(app = create_app())
-    with create_app().app_context():
-        # db.create_all()
-        pass
-    
-# if __name__ == "__main__":
-main()
+with create_app().app_context():
+    # db.create_all()
+    pass

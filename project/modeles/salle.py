@@ -2,24 +2,27 @@ from sqlalchemy import Column, String, SmallInteger, Boolean
 from .. import db
 from ..schemas.salle import SchemaSalle, SchemaSalleCreation
 
+
 class ModeleSalle(db.Model):
-    __tablename__ = 'salle'
+    __tablename__ = "salle"
     id_salle = Column(SmallInteger, primary_key=True)
     nom = Column(String)
     capacite = Column(SmallInteger)
     localisation = Column(String)
     actif = Column(Boolean)
 
-    def get_id(self):
+    def get_id(self) -> int:
         return self.id_salle
 
-def creation_salle(**kwargs):
+
+def creation_salle(**kwargs) -> ModeleSalle:
     schema = SchemaSalleCreation(**kwargs)
     modele = ModeleSalle(**schema.model_dump())
     db.session.add(modele)
     return modele
 
-def maj_salle(**kwargs):
+
+def maj_salle(**kwargs) -> ModeleSalle:
     schema = SchemaSalle(**kwargs)
     modele = ModeleSalle(**schema.model_dump())
     db.session.add(modele)
