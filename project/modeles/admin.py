@@ -10,16 +10,16 @@ class ModeleAdmin(ModeleUtilisateur):
     niveau_acces = Column(Enum)
     date_promotion = Column(Date)
 
-    def get_id(self):
+    def get_id(self) -> int:
         return self.id_admin
 
-def creation_admin(**kwargs):
+def creation_admin(**kwargs) -> ModeleAdmin:
     schema = SchemaAdminCreation(**kwargs)
     modele = ModeleAdmin(**schema.model_dump())
     db.session.add(modele)
     return modele
 
-def maj_admin(**kwargs):
+def maj_admin(**kwargs) -> ModeleAdmin:
     schema = SchemaAdmin(**kwargs)
     modele = ModeleAdmin(**schema.model_dump())
     db.session.add(modele)

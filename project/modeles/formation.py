@@ -7,16 +7,16 @@ class ModeleFormation(db.Model):
     id_formation = Column(SmallInteger, primary_key=True)
     libelle = Column(String)
 
-    def get_id(self):
+    def get_id(self) -> int:
         return self.id_formation
 
-def creation_formation(**kwargs):
+def creation_formation(**kwargs) -> ModeleFormation:
     schema = SchemaFormation(**kwargs)
     modele = ModeleFormation(**schema.model_dump())
     db.session.add(modele)
     return modele
 
-def maj_formation(**kwargs):
+def maj_formation(**kwargs) -> ModeleFormation:
     schema = SchemaFormation(**kwargs)
     modele = ModeleFormation(**schema.model_dump())
     db.session.add(modele)

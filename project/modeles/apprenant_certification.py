@@ -25,16 +25,17 @@ class ModeleApprenant(ModeleUtilisateur):
         secondary=apprenant_certification,
         back_populates="apprenants"
     )
-    def get_id(self):
+    
+    def get_id(self) -> int:
         return self.id_apprenant
     
-def creation_apprenant(**kwargs):
+def creation_apprenant(**kwargs) -> ModeleApprenant:
     schema = SchemaApprenantCreation(**kwargs)
     modele = ModeleApprenant(**schema.model_dump())
     db.session.add(modele)
     return modele
 
-def maj_apprenant(modele_existant: ModeleApprenant, **kwargs):
+def maj_apprenant(modele_existant: ModeleApprenant, **kwargs) -> bool:
     schema = SchemaApprenantMaj(**kwargs)
     for champ, valeur in schema.__dict__.items():
         setattr(modele_existant, champ, valeur)
@@ -50,16 +51,16 @@ class ModeleCertification(db.Model):
         back_populates="certifications"
     )
 
-    def get_id(self):
+    def get_id(self) -> int:
         return self.id_certification
 
-def creation_certification(**kwargs):
+def creation_certification(**kwargs) -> ModeleCertification:
     schema = SchemaCertification(**kwargs)
     modele = ModeleCertification(**schema.model_dump())
     db.session.add(modele)
     return modele
 
-def maj_certification(modele_existant: ModeleCertification, **kwargs):
+def maj_certification(modele_existant: ModeleCertification, **kwargs) -> bool:
     schema = SchemaCertification(**kwargs)
     for champ, valeur in schema.__dict__.items():
         setattr(modele_existant, champ, valeur)

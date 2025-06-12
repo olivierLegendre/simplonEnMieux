@@ -10,16 +10,16 @@ class ModeleSupport(ModeleUtilisateur):
     date_prise_fonction = Column(Date)
     responsabilites = Column(JSON)
 
-    def get_id(self):
+    def get_id(self) -> int:
         return self.id_support
 
-def creation_support(**kwargs):
+def creation_support(**kwargs) -> ModeleSupport :
     schema = SchemaSupportCreation(**kwargs)
     modele = ModeleSupport(**schema.model_dump())
     db.session.add(modele)
     return modele
 
-def maj_support(**kwargs):
+def maj_support(**kwargs) -> ModeleSupport :
     schema = SchemaSupport(**kwargs)
     modele = ModeleSupport(**schema.model_dump())
     db.session.add(modele)

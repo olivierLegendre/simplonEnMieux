@@ -12,16 +12,16 @@ class ModeleFormateur(ModeleUtilisateur):
     taux_horaire = Column(Float)
     bio = Column(Text)
 
-    def get_id(self):
+    def get_id(self) -> int:
         return self.id_formateur
 
-def creation_formateur(**kwargs):
+def creation_formateur(**kwargs) -> ModeleFormateur:
     schema = SchemaFormateurCreation(**kwargs)
     modele = ModeleFormateur(**schema.model_dump())
     db.session.add(modele)
     return modele
 
-def maj_formateur(**kwargs):
+def maj_formateur(**kwargs) -> ModeleFormateur:
     schema = SchemaFormateur(**kwargs)
     modele = ModeleFormateur(**schema.model_dump())
     db.session.add(modele)
