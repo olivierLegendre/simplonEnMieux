@@ -235,3 +235,4 @@ Temporary Items
 project/db/database.db
 .vscode
 .vscode/*
+.notebook
