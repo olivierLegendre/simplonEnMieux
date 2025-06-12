@@ -20,18 +20,16 @@ class ModeleUtilisateur(UserMixin, db.Model):
     
     def to_dict(self):
         map_dict = { c.key: getattr(self, c.key) for c in inspect(self).mapper.column_attrs }
-        print(f" map dict {map_dict}")
         map_serialisable = dict()
         for key, value in map_dict.items():
             if isinstance(value, Enum):
-                print("la on est chaud !!!")
                 map_serialisable[key] = ModeleUtilisateur.get_enum_values(value)
             else:
                 map_serialisable[key] = value
-        print(f" map serialisable {map_serialisable}")
         return map_serialisable
     
     def get_enum_values(enum):
         print(f" enum class {enum}")
         print(f" to return {enum.name}")
+        pass
         # return enum.name

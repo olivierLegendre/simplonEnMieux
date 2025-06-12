@@ -34,7 +34,6 @@ def login_post():
 
     session["user"] = user.to_dict()
     session["user_type"] = "appprenant"
-    print(f"user {user.to_dict()}")
     login_user(user, remember="remember")
     return redirect(url_for('main.profile'))
 
@@ -57,10 +56,8 @@ def signup_post():
     user_by_email = ModeleApprenant.query.filter_by(email=email).first()
     # if this returns a user, then the login already exists in database
     user_by_login = ModeleApprenant.query.filter_by(login=login).first()
-    print(f"{user_by_email} {user_by_login}")
     
     if user_by_login is not None:
-        print(f"je suis l'utilisateur {user_by_login}")
         flash('Login address already exists')
         return redirect(url_for('auth.signup'))
     if user_by_email is not None:
@@ -70,7 +67,6 @@ def signup_post():
     #create a new user
     #hash the password
     apprenant = creation_apprenant(email=email, nom=nom, prenom=prenom, date_creation=date_creation , login=login, mdp=generate_password_hash(mdp))
-    print(f"apprenant dans signup {apprenant}")
     db.session.commit()
     
     return redirect(url_for('auth.login'))
