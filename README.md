@@ -4,12 +4,12 @@ Un projet Flask pour démontrer comment structurer une application web simple av
 
 ## 🚀 Installation
 
-1. Clone le dépôt et positionne-toi sur la branche `develop` :
+1. Clone le dépôt et positionne-toi sur la branche `main` :
 
 ```bash
 git clone https://github.com/olivierLegendre/simplonEnMieux.git
 cd simplonEnMieux
-git checkout develop
+git checkout main
 ```
 
 2. Crée un environnement virtuel et installe les dépendances :
